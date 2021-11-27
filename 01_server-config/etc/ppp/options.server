@@ -1,0 +1,17 @@
+#
+# Auto login for calling users
+#
+proxyarp
+asyncmap 0
+crtscts
+modem
+lock
+ms-dns 150.1.DSE_MEM.1
+ms-dns 150.1.DSE_MEM.24
+-detach
++pap
+#-chap
+#
+# allow peer to specify its IP
+ipcp-accept-remote
+

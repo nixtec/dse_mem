@@ -1,0 +1,7 @@
+# Trap CTRL-ALT-DELETE
+ca::ctrlaltdel:/sbin/shutdown -t3 -h now
+
+S0:2345:respawn:/sbin/mgetty -D ttyS0
+S1:2345:respawn:/var/dse/rc/slscript.sh
+#S1:2345:respawn:/sbin/mgetty -D ttyS1
+#S1:2345:respawn:/sbin/mgetty -D ttySHSF0

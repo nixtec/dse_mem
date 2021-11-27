@@ -1,0 +1,64 @@
+Replace all instance of DSE_MEM with the member number.
+Using '93' as member ID as example here.
+
+
+
+Installation:
+=============
+1. Create user 'forward'
+	groupadd forward
+	useradd forward -g forward
+	passwd forward
+
+2. Configure network interface
+	netconfig
+	  => IP: 150.1.93.24
+	  => Subnet Mask: 255.255.0.0
+	  => Default Gateway: 150.1.93.1
+
+2. Configure, build and install the forwarder
+	cd 00_forwarder.work.win
+	make DSE_MEM=93
+	make install
+	cd ..
+
+3. Go to '01_server-config/etc/' folder
+	Edit '/etc/inittab' and '/etc/sysctl.conf' according to the files. Then
+	type 'sysctl -p' to activate the forward rule.
+
+	Go to 'ppp' folder and change all instances of 'DSE_MEM' with the
+	member ID [93] used in Step 1 in all of the 'options.*' files. Then
+	copy all files of the 'ppp' folder to '/etc/ppp/' folder.
+
+	Go to 'mgetty+sendfax' folder and edit 'login.config' and
+	'mgetty.config' files in '/etc/mgetty+sendfax/' folder.
+
+4. Run 'ntsysv' and disable 'iptables' from service list. Because we're going
+   to use our firewall rules.
+
+5. Type 'telinit q' to reload '/etc/inittab' file. [optional if you restart]
+
+Your server configuration is done.
+Restart the system to see if everything works fine.
+
+Client Configuration:
+=====================
+1. Go to '02_client-config' folder and replace all 'DSE_MEM' entries with member
+   ID in 'forwarder.bat' file.
+2. Run 'install.bat' file. Client configuration is done. Now enjoy using TESA.
+
+						Ayub
+
+
+from 'man pppd':
+/etc/ppp/options.ttyname:
+=========================
+System default options for the serial port being used, read after ~/.ppprc. In
+forming the 'ttyname' part of this filename, an initial '/dev/' is stripped
+from the port name (if present), and any slashes in the remaining part are
+converted to dots.
+
+So, '/dev/pts/0' will be 'options.pts.0'
+
+
+You may specify client ip from client side.

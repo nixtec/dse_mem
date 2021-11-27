@@ -1,0 +1,46 @@
+Old README, ignore this.
+
+'win.iphdr' is working correctly.
+compiled in cygwin...
+
+In client side use different forwarder.bat files for different phone numbers
+so that ip address may be specified correctly.
+
+SYNTAX OF ifinfo.cfg FILE:
+
+================ifinfo.cfg===============
+N
+<iface> <addr>
+<iface> <addr>
+...
+<iface> <addr>
+=========================================
+
+SYNTAX OF ports.cfg FILE:
+
+===============ports.cfg=================
+<port1> <port2> ... <portN>
+=========================================
+
+
+For testing:
+========================TERMINAL#1=======================
+$ ./receiver <LOCAL_IP> 7860
+=========================================================
+
+========================TERMINAL#2=======================
+$ ./forwarder.debug <LOCAL_BROADCAST_ADDRESS> 6000
+=========================================================
+
+========================TERMINAL#3=======================
+$ ./sender <LOCAL_BROADCAST_ADDRESS> 6000
+hi there
+this is ayub
+$
+=========================================================
+
+When you'll type in terminal#3, you'll see some messages in termial#1. If so,
+the system is working, means receiver is getting sender's messages, via the
+forwarder.
+
+

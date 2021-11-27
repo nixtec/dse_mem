@@ -1,0 +1,53 @@
+[root@marvlap slmodem]# make KERNEL_DIR=/usr/src/kernels/2.6.15-1.2054_FC5-i686
+make -C modem all
+make[1]: Entering directory `/usr/src/modules/slmodem/modem'
+rebuild profile...
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o modem_main.o -c modem_main.c
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o modem_cmdline.o -c modem_cmdline.cgcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o modem.o -c modem.c
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o modem_datafile.o -c modem_datafile.c
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o modem_at.o -c modem_at.c
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o modem_timer.o -c modem_timer.c
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o modem_pack.o -c modem_pack.c
+modem_pack.c: In function ‘modem_async_get_bits’:
+modem_pack.c:100: warning: pointer targets in passing argument 2 of ‘m->get_chars’ differ in signedness
+modem_pack.c: In function ‘modem_async_put_bits’:
+modem_pack.c:148: warning: pointer targets in passing argument 2 of ‘m->put_chars’ differ in signedness
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o modem_ec.o -c modem_ec.c
+modem_ec.c: In function ‘tx_info’:
+modem_ec.c:723: warning: pointer targets in passing argument 2 of ‘l->modem->get_chars’ differ in signedness
+modem_ec.c: In function ‘push_rest_data’:
+modem_ec.c:811: warning: pointer targets in passing argument 2 of ‘l->modem->put_chars’ differ in signedness
+modem_ec.c: In function ‘rx_info’:
+modem_ec.c:860: warning: pointer targets in passing argument 2 of ‘l->modem->put_chars’ differ in signedness
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o modem_comp.o -c modem_comp.c
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o modem_param.o -c modem_param.c
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o modem_debug.o -c modem_debug.c
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o homolog_data.o -c homolog_data.c
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o dp_sinus.o -c dp_sinus.c
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o dp_dummy.o -c dp_dummy.c
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o sysdep_common.o -c sysdep_common.cgcc  -o slmodemd modem_main.o modem_cmdline.o modem.o modem_datafile.o modem_at.o modem_timer.o modem_pack.o modem_ec.o modem_comp.o modem_param.o modem_debug.o homolog_data.o dp_sinus.o dp_dummy.o dsplibs.o sysdep_common.o
+gcc -Wall -g -O -I. -DCONFIG_DEBUG_MODEM   -o modem_test.o -c modem_test.c
+gcc  -o modem_test modem_test.o modem_cmdline.o modem.o modem_datafile.o modem_at.o modem_timer.o modem_pack.o modem_ec.o modem_comp.o modem_param.o modem_debug.o homolog_data.o dp_sinus.o dp_dummy.o dsplibs.o sysdep_common.o
+make[1]: Leaving directory `/usr/src/modules/slmodem/modem'
+make -C drivers KERNEL_DIR=/usr/src/kernels/2.6.15-1.2054_FC5-i686
+make[1]: Entering directory `/usr/src/modules/slmodem/drivers'
+cc -I/usr/src/kernels/2.6.15-1.2054_FC5-i686/include -o kernel-ver kernel-ver.c
+make all KERNEL_VER=2.6.15-1.2054_FC5
+make[2]: Entering directory `/usr/src/modules/slmodem/drivers'
+make modules -C /usr/src/kernels/2.6.15-1.2054_FC5-i686 SUBDIRS=/usr/src/modules/slmodem/drivers
+make[3]: Entering directory `/usr/src/kernels/2.6.15-1.2054_FC5-i686'
+  CC [M]  /usr/src/modules/slmodem/drivers/amrmo_init.o
+  CC [M]  /usr/src/modules/slmodem/drivers/sysdep_amr.o
+  CC [M]  /usr/src/modules/slmodem/drivers/st7554.o
+  LD [M]  /usr/src/modules/slmodem/drivers/slamr.o
+  LD [M]  /usr/src/modules/slmodem/drivers/slusb.o
+  Building modules, stage 2.
+  MODPOST
+Warning: could not find /usr/src/modules/slmodem/drivers/.amrlibs.o.cmd for /usr/src/modules/slmodem/drivers/amrlibs.o
+  CC      /usr/src/modules/slmodem/drivers/slamr.mod.o
+  LD [M]  /usr/src/modules/slmodem/drivers/slamr.ko
+  CC      /usr/src/modules/slmodem/drivers/slusb.mod.o
+  LD [M]  /usr/src/modules/slmodem/drivers/slusb.ko
+make[3]: Leaving directory `/usr/src/kernels/2.6.15-1.2054_FC5-i686'
+make[2]: Leaving directory `/usr/src/modules/slmodem/drivers'
+make[1]: Leaving directory `/usr/src/modules/slmodem/drivers'

@@ -1,0 +1,6 @@
+# Trap CTRL-ALT-DELETE
+# let users shutdown the PC with 'CTRL-ALT-DELETE'
+ca::ctrlaltdel:/sbin/shutdown -t3 -h now
+
+# entry for each modem connection
+s0:2345:respawn:/sbin/mgetty -D ttyS0
